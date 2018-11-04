@@ -1,4 +1,4 @@
-# DarkCipher
+# Dark64
 
 Dark64 is a 256 bit stream cipher aimed at providing no vector of attack other than brute force.  Dark64 is part of the Dark family of ciphers.  Dark maintains a 512 bit state and outputs 64 bits from a complex output function that operates on half of the state (256 bits),  This leaves no room for clues regarding the state.  Dark is fast and formidable.  Dark takes a 256 bit key and 128 bit nonce.
 
