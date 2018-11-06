@@ -13,16 +13,27 @@ For each round of encryption, the round function is applied to the entire regist
 Round function demonstrated in C code:
 
 void F(uint64_t j, uint64_t ct) {
+
     int i;
+
     uint64_t x;
+
     for (i = 0; i < 8; i++) {
+
         x = r[i];
+
         r[i] = (r[i] + r[(i + 1) & 0x07] + j);
+
         r[i] = r[i] ^ x;
+
         r[i] = rotate(r[i], 2);
+
         j = (j + r[i] + ct);
+
         ct = (ct + 1);
+
     }
+
 }
 
 The complexity to solve for the state at any given block of 64 bits in the ciphertext is the same complexity to brute force the key (2^256 complexity).  The complexity to calculate the state or to compute the next state at any given point in time is 2^512.
