@@ -26,7 +26,7 @@ void F(uint64_t j, uint64_t ct) {
 
         r[i] = r[i] ^ x;
 
-        r[i] = rotate(r[i], 2);
+        r[i] = rotateleft(r[i], 2);
 
         j = (j + r[i] + ct);
 
