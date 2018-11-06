@@ -6,7 +6,7 @@ In order to break one 64 bit round of Dark64, one must discover the 256 bit half
 
 # Algorithm description
 
-Dark initializes a 512 bit array (8 x 64 bit words) with the unpacked 256 bit key.  One quarter of the array is XORed with the nonce and then the round function is applied 64 times before beginning encryption or decryption.  The resulting 512 bit array is called the register or state but I prefer register.  The register's function is to output pseudo random bits to be XORed with the plaintext.
+Dark initializes a 512 bit array (8 x 64 bit words) with the unpacked 256 bit key.  One quarter of the array is XORed with the nonce (first and second registers).  Then J is computed (a pseudo random accumulator which is used in the round function.  This is done by summing all of the key values. Then the round function is applied 64 times before beginning encryption or decryption.  The resulting 512 bit array is called the register or state but I prefer register.  The register's function is to output pseudo random bits to be XORed with the plaintext.
 
 For each round of encryption, the round function is applied to the entire register array in the following manner.  The first element is added to the element to the right.  The result is XORed with the value prior to the addition and then rotated left 2 bits.  Next, the register outputs a 64 bit word by adding the first and 7th words, the result is XORed with the 3rd word and that result is XORed with the fifth word.  Lastly, 8 bytes are unpacked from the 64 bit word and XORed with the first 8 plaintext bytes.  This process repeats until there are no more plaintext bytes to process.  Remaining bytes of the keystream are discarded.
 
