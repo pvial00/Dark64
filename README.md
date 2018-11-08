@@ -1,6 +1,6 @@
 # Dark64
 
-Dark64 is a 256 bit stream cipher aimed at providing no vector of attack other than brute force.  Dark64 is part of the Dark family of ciphers.  Dark maintains a 512 bit state and outputs 64 bits from a complex output function that operates on half of the state (256 bits),  This leaves no room for clues regarding the state.  Dark is fast and formidable.  Dark takes a 256 bit key and 128 bit nonce.
+Dark64 and Darker are 256 bit stream ciphers aimed at providing no vector of attack other than brute force.  Dark64 is part of the Dark family of ciphers.  Dark maintains a 512 bit state and outputs 64 bits from a complex output function that operates on half of the state (256 bits),  This leaves no room for clues regarding the state.  Dark is fast and formidable.  Dark takes a 256 bit key and 128 bit nonce.
 
 In order to break one 64 bit round of Dark64, one must discover the 256 bit half state.  In order to calculate the round after it or before it, all 512 bits of the state is needed.  Best attack vector, at the moment, is brute force.
 
@@ -37,3 +37,7 @@ void F(uint64_t j, uint64_t ct) {
 }
 
 The complexity to solve for the state at any given block of 64 bits in the ciphertext is the same complexity to brute force the key (2^256 complexity).  The complexity to calculate the state or to compute the next state at any given point in time is 2^512.
+
+# Darker
+
+Darker aims to provide the same security but have improved speed.  The XOR in F function is changed to be an XOR with r[(i + 2)] instead of the previous value of r[i].  The counter was also eliminated.
